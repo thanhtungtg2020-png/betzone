@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070b10">
+<title>BETZONE • Virtual Arena</title>
+<!-- V5 OFFLINE: Không dùng Google Fonts bắt buộc để app mở ngay cả khi không có mạng. -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="noise"></div>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <!-- [CUSTOM LOGO] Thay file logo.svg bên thư mục này để đổi logo BETZONE. -->
+      <div class="brand-icon logo-mark"><img src="logo.svg" alt="BETZONE logo"></div>
+      <div>BET<span>ZONE</span><small>VIRTUAL ARENA</small></div>
+    </div>
+
+    <button class="profile-mini" id="profileOpen" title="Chỉnh thông tin cá nhân">
+      <div class="avatar avatar-large" id="profileAvatar">U</div>
+      <div><strong id="profileName">Player 01</strong><small id="profileEmail">Demo account</small><small class="profile-title-mini" id="profileTitle">🌱 Người mới</small></div>
+      <span class="online-dot"></span>
+      <span class="profile-edit-icon">✎</span>
+    </button>
+
+    <div class="side-label">MENU</div>
+    <button class="side-btn active" data-page="home"><span>⌂</span><span>Trang chủ</span></button>
+    <button class="side-btn" data-page="football"><span>⚽</span><span>Bóng đá LIVE</span><i id="footballCount">0</i></button>
+    <button class="side-btn" data-page="dice"><span>🎲</span><span>Tài / Xỉu</span></button>
+    <button class="side-btn" data-page="games"><span>✦</span><span>Mini Games</span><i>2</i></button>
+    <button class="side-btn" data-page="blackjack"><span>🃏</span><span>Xì Dách</span><i>NEW</i></button>
+    <button class="side-btn" data-page="tienlen"><span>♠</span><span>Tiến Lên</span><i>4P</i></button>
+    <button class="side-btn" data-page="shop"><span>🛍</span><span>Cửa hàng</span><i id="shopCount">3</i></button>
+    <button class="side-btn" data-page="pachinko"><span>🎰</span><span>Pachinko</span><i>NEW</i></button>
+    <button class="side-btn" data-page="titlesPage"><span>🏆</span><span>Danh hiệu</span><i id="titleBadge">0</i></button>
+    <button class="side-btn" data-page="history"><span>◷</span><span>Lịch sử</span></button>
+
+    <div class="side-bottom">
+      <div class="live-status" id="connectionStatus"><span></span><div><b>LIVE DATA</b><small>Đang kiểm tra kết nối…</small></div></div>
+      <div class="virtual"><span>●</span> Chế độ coin ảo</div>
+      <button class="sound" id="soundBtn">🔊 Âm thanh <b>ON</b></button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header>
+      <button class="mobile-menu" id="mobileMenu">☰</button>
+      <div class="header-mini-logo"><span>B</span><b>ETZONE</b></div>
+      <div class="top-title" id="topTitle">Trang chủ <small>Virtual betting experience</small></div>
+      <div class="top-right">
+        <div class="live-clock"><span></span><div><small>VIỆT NAM</small><b id="liveClock">--:--:--</b></div></div>
+        <div class="wallet"><span>💵</span><div><small>SỐ DƯ</small><b id="balance">10,000</b></div><button id="withdrawBtn" class="wallet-mini-btn" title="Rút coin ảo • tối đa 80,000 / 2 phút">⇩</button><button id="addCoins" title="Nhận thêm coin ảo">+</button></div>
+        <div class="top-level" title="Tiến trình nhân vật"><div><span id="playerLevel">Lv.1</span><small id="profileTopTitle">Người mới</small></div><div class="xp-mini"><i id="playerXPBar"></i></div></div>
+        <button class="avatar top-avatar" id="profileOpenTop" title="Chỉnh thông tin cá nhân">U</button>
+      </div>
+    </header>
+
+    <div class="ticker">
+      <div class="ticker-label"><span class="pulse"></span> LIVE CENTER</div>
+      <div class="ticker-track" id="tickerTrack"><span>Đang tải dữ liệu bóng đá…</span></div>
+      <button class="ticker-refresh" id="refreshLive" title="Làm mới dữ liệu">↻</button>
+    </div>
+
+    <main>
+      <section id="home" class="page active">
+        <div class="hero hero-upgraded">
+          <div class="hero-grid"></div>
+          <div class="hero-content">
+            <div class="live-pill"><span></span> DEMO ARENA • LIVE DATA</div>
+            <div class="hero-kicker">VIRTUAL SPORTS &amp; MINI GAMES</div>
+            <h1>Play smart.<br><strong>Have fun.</strong></h1>
+            <p>Trải nghiệm BETZONE với coin ảo, dữ liệu tỷ số bóng đá được cập nhật định kỳ và hiệu ứng game mượt hơn.</p>
+            <div class="hero-actions">
+              <button class="green-btn" onclick="showPage('football')">⚽ Xem bóng đá LIVE <b>→</b></button>
+              <button class="ghost-btn" onclick="showPage('dice')">🎲 Chơi Tài/Xỉu</button>
+            </div>
+            <div class="hero-meta"><span>⚡ Cập nhật tự động</span><span>🛡 Coin ảo</span><span>🔊 Sound FX</span></div>
+          </div>
+          <div class="hero-orb-wrap">
+            <div class="hero-orb"><div class="orb-ring"></div><div class="orb-coin">🪙</div><span>VIRTUAL<br>COINS</span></div>
+            <div class="floating-chip chip-one">LIVE <b>●</b></div>
+            <div class="floating-chip chip-two">UPDATES <b id="updateCount">0</b></div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div><small>SỐ DƯ</small><b id="statBalance">10,000</b><em>🪙 coin ảo</em></div>
+          <div><small>KÈO / GAME</small><b id="statBets">0</b><em>Hoạt động trong phiên</em></div>
+          <div><small>TRẠNG THÁI</small><b class="green">ONLINE</b><em id="lastUpdatedText">Đang đồng bộ dữ liệu</em></div>
+          <div><small>LEVEL / XP</small><b id="profileLevel">LV.1</b><em id="playerXP">0 / 210 XP</em><div class="xp-bar"><i id="playerXPBarHome"></i></div></div>
+        </div>
+
+        <div class="section-head"><div><small class="eyebrow">LIVE SNAPSHOT</small><h2>Bảng điểm nổi bật</h2></div><button class="text-btn" onclick="showPage('football')">Mở trung tâm bóng đá →</button></div>
+        <div class="featured" id="homeFeatured"></div>
+
+        <div class="section-head more-space"><div><small class="eyebrow">QUICK PLAY</small><h2>Chơi nhanh</h2></div></div>
+        <div class="quick-grid">
+          <button class="quick-card" onclick="showPage('dice')"><span class="quick-icon">🎲</span><span><b>Tài / Xỉu</b><small>Hiệu ứng tung xúc xắc 3 bước</small></span><strong>→</strong></button>
+          <button class="quick-card" onclick="showPage('games')"><span class="quick-icon">🃏</span><span><b>High Card</b><small>So lá bài và thử vận may</small></span><strong>→</strong></button>
+          <button class="quick-card" onclick="showPage('games')"><span class="quick-icon">🪙</span><span><b>Coin Flip</b><small>Ngửa hoặc sấp • mặt xu rõ ràng</small></span><strong>→</strong></button>
+          <button class="quick-card" onclick="showPage('blackjack')"><span class="quick-icon">🃏</span><span><b>Xì Dách</b><small>Rút bài, dằn hoặc chơi thêm</small></span><strong>→</strong></button>
+          <button class="quick-card" onclick="showPage('tienlen')"><span class="quick-icon">♠</span><span><b>Tiến Lên 4P</b><small>13 lá/người • chơi với 3 máy</small></span><strong>→</strong></button>
+          <button class="quick-card" onclick="showPage('pachinko')"><span class="quick-icon">🎰</span><span><b>Pachinko</b><small>3 reel • combo x25 • neon machine</small></span><strong>→</strong></button>
+          <button class="quick-card" onclick="showPage('titlesPage')"><span class="quick-icon">🏆</span><span><b>Sảnh danh hiệu</b><small>Thu thập, trang bị và khoe title</small></span><strong>→</strong></button>
+        </div>
+      </section>
+
+      <section id="football" class="page">
+        <div class="page-head">
+          <div><small class="eyebrow">SPORTS CENTER</small><h1>⚽ Bóng đá LIVE</h1><p>Dữ liệu tỷ số từ nguồn thể thao công khai, làm mới tự động. Phần lựa chọn chỉ dùng coin ảo.</p></div>
+          <div class="header-actions"><span class="demo-badge">COIN ẢO ONLY</span><button class="outline-btn" id="footballRefresh">↻ Làm mới</button></div>
+        </div>
+        <div class="feed-toolbar">
+          <div class="league-bar" id="leagueBar">
+            <button class="league-filter active" data-league="all">🔥 Tất cả</button>
+            <button class="league-filter" data-league="eng.1">🏴 Premier League</button>
+            <button class="league-filter" data-league="esp.1">🇪🇸 La Liga</button>
+            <button class="league-filter" data-league="ita.1">🇮🇹 Serie A</button>
+            <button class="league-filter" data-league="ger.1">🇩🇪 Bundesliga</button>
+          </div>
+          <div class="data-note"><span class="status-dot"></span><span id="dataNote">Đang đồng bộ…</span></div>
+        </div>
+        <div class="live-board" id="liveBoard"></div>
+        <div class="betslip hidden" id="betslip">
+          <div class="betslip-main"><small>VÉ DEMO</small><b id="selectedText">---</b><span>Tỷ lệ mô phỏng <strong id="selectedOdds">0</strong></span></div>
+          <input id="betAmount" type="number" min="1" step="1" placeholder="Coin">
+          <button class="green-btn" id="placeBet">Xác nhận lựa chọn</button>
+          <button class="close-slip" id="closeSlip">×</button>
+        </div>
+      </section>
+
+      <section id="dice" class="page">
+        <div class="dice-page">
+          <small class="eyebrow">QUICK GAME</small><h1>🎲 Tài / Xỉu</h1><p>Chọn cửa → nhập coin → bắt đầu. Lượt chơi có chuỗi chờ 5 bước và countdown trước khi công bố kết quả.</p>
+          <div class="dice-machine" id="diceMachine">
+            <div class="machine-scan"></div><div class="machine-light"></div>
+            <div class="dice-cup">🎲 <span>BETZONE DICE LAB</span></div>
+            <div class="dice-lane">
+              <div class="die" id="die1">⚄</div><div class="die" id="die2">⚂</div><div class="die" id="die3">⚅</div>
+            </div>
+            <div id="diceResult" class="dice-result">⚄ • ⚂ • ⚅</div>
+            <div id="diceText">Sẵn sàng cho lượt tiếp theo</div>
+            <div class="dice-countdown" id="diceCountdown"></div>
+            <div class="dice-progress"><span id="diceProgressBar"></span></div>
+          </div>
+          <div class="dice-steps" id="diceSteps">
+            <span class="active">1 <b>Chuẩn bị</b></span><i></i><span>2 <b>Lắc</b></span><i></i><span>3 <b>Kiểm tra</b></span><i></i><span>4 <b>Countdown</b></span><i></i><span>5 <b>Mở kết quả</b></span>
+          </div>
+          <div class="dice-status" id="diceStatus">Chọn Tài hoặc Xỉu để bắt đầu</div>
+          <div class="dice-choice"><button data-choice="Tài">TÀI <small>11–18 • ×2.00</small></button><button data-choice="Xỉu">XỈU <small>3–10 • ×2.00</small></button></div>
+          <input id="diceAmount" class="coin-input" type="number" min="1" step="1" placeholder="Nhập số coin muốn cược">
+          <button id="rollDice" class="green-btn roll">🎲 BẮT ĐẦU LƯỢT CHƠI</button><div id="diceMessage"></div>
+        </div>
+      </section>
+
+      <section id="games" class="page">
+        <div class="page-head"><div><small class="eyebrow">MINI ARCADE</small><h1>✦ Mini Games</h1><p>Hai game nhỏ, kết quả ngẫu nhiên, chỉ dùng coin ảo trong trình duyệt.</p></div><span class="demo-badge">VIRTUAL ONLY</span></div>
+        <div class="games-grid">
+          <article class="game-panel" id="coinPanel">
+            <div class="game-panel-top"><span class="game-badge">01 • SIMPLE</span><span>🪙</span></div>
+            <h2>Coin Flip</h2><p>Chọn mặt ngửa hoặc sấp. Kết quả sẽ xuất hiện sau hiệu ứng lật.</p>
+            <div class="coin-stage">
+              <div class="flip-coin" id="bigCoin" aria-label="Đồng xu">
+                <div class="coin-face coin-heads"><b>NGỬA</b><span>★</span><small>BETZONE</small></div>
+                <div class="coin-face coin-tails"><b>SẤP</b><span>◆</span><small>BETZONE</small></div>
+              </div>
+              <span id="coinResult">Sẵn sàng</span>
+            </div>
+            <div class="two-choice"><button data-coin="Ngửa">NGỬA <small>★</small></button><button data-coin="Sấp">SẤP <small>◆</small></button></div>
+            <input id="coinAmount" class="coin-input" type="number" min="1" step="1" placeholder="Coin">
+            <button class="green-btn full" id="flipCoin">🪙 LẬT ĐỒNG XU</button>
+          </article>
+          <article class="game-panel" id="cardPanel">
+            <div class="game-panel-top"><span class="game-badge">02 • CLASSIC</span><span>🃏</span></div>
+            <h2>High Card</h2><p>Rút một lá cho bạn và một lá cho máy. Lá cao hơn thắng lượt.</p>
+            <div class="cards-stage"><div class="playing-card" id="userCard">?</div><div class="vs-badge">VS</div><div class="playing-card" id="cpuCard">?</div></div>
+            <div class="cards-label"><span>BẠN</span><span>MÁY</span></div>
+            <input id="cardAmount" class="coin-input" type="number" min="1" step="1" placeholder="Coin">
+            <button class="green-btn full" id="drawCard">🃏 RÚT BÀI</button>
+            <div id="cardResult" class="game-result"></div>
+          </article>
+        </div>
+      </section>
+
+
+      <section id="tienlen" class="page">
+        <div class="page-head">
+          <div><small class="eyebrow">VIETNAMESE CARD GAME • 4 PLAYERS</small><h1>♠ Tiến Lên Miền Nam</h1><p>4 người • bộ 52 lá • mỗi người 13 lá. Người chơi là BẠN, ba vị trí còn lại do máy điều khiển.</p></div>
+          <div class="header-actions"><span class="demo-badge">VIRTUAL ONLY</span><button class="outline-btn" id="tlNewRound">↻ Chia ván mới</button></div>
+        </div>
+        <div class="tienlen-shell">
+          <div class="tienlen-table" id="tlTable">
+            <div class="tl-table-glow"></div>
+            <div class="tl-seat tl-seat-top" id="tlSeat2">
+              <div class="tl-avatar">🤖</div><div><b>Máy 2</b><small id="tlCount2">13 lá</small></div>
+              <span class="tl-turn-dot" id="tlTurn2"></span>
+            </div>
+            <div class="tl-seat tl-seat-left" id="tlSeat1">
+              <div class="tl-avatar">🤖</div><div><b>Máy 1</b><small id="tlCount1">13 lá</small></div>
+              <span class="tl-turn-dot" id="tlTurn1"></span>
+            </div>
+            <div class="tl-seat tl-seat-right" id="tlSeat3">
+              <div class="tl-avatar">🤖</div><div><b>Máy 3</b><small id="tlCount3">13 lá</small></div>
+              <span class="tl-turn-dot" id="tlTurn3"></span>
+            </div>
+            <div class="tl-center">
+              <div class="tl-center-head"><span id="tlTurnText">Chưa chia bài</span><span id="tlLastPlay">Bàn trống</span></div>
+              <div class="tl-play-area" id="tlPlayArea"><span class="tl-empty">Bấm “CHIA BÀI” để bắt đầu ván 4 người</span></div>
+              <div class="tl-log" id="tlLog">Luật mở đầu: ván đầu 3♠ đi trước; ván sau người thắng ván trước đi trước.</div>
+            </div>
+            <div class="tl-seat tl-seat-bottom active-seat" id="tlSeat0">
+              <div class="tl-avatar">🙂</div><div><b id="tlMyName">BẠN</b><small id="tlCount0">0 lá</small></div>
+              <span class="tl-turn-dot" id="tlTurn0"></span>
+            </div>
+          </div>
+
+          <div class="tl-controls">
+            <div class="tl-control-head">
+              <div><small>VÁN TIẾN LÊN 4 NGƯỜI</small><b id="tlStatus">Sẵn sàng</b></div>
+              <label>Cược coin ảo<input id="tlAmount" class="coin-input" type="number" min="1" step="1" placeholder="Coin"></label>
+            </div>
+            <div class="tl-current"><span>Tổ hợp đang chờ:</span><b id="tlComboText">—</b><span id="tlRuleHint">Chọn bài trong tay rồi bấm ĐÁNH.</span></div>
+            <div class="tl-my-cards" id="tlMyCards"></div>
+            <div class="tl-action-row">
+              <button class="green-btn" id="tlDeal">🃏 CHIA BÀI</button>
+              <button class="outline-btn" id="tlPlay" disabled>ĐÁNH</button>
+              <button class="outline-btn" id="tlPass" disabled>BỎ LƯỢT</button>
+            </div>
+          </div>
+
+          <div class="tl-rules">
+            <div class="tl-rules-head"><div><small class="eyebrow">LUẬT BÀN</small><h2>Tiến Lên Miền Nam — 4 người</h2></div><span class="demo-badge">52 LÁ • 13 LÁ/NGƯỜI</span></div>
+            <div class="tl-rules-grid">
+              <div><b>Thứ tự</b><span>3 &lt; 4 &lt; … &lt; A &lt; 2. Chất dùng để phân định lá lẻ: ♠ &lt; ♣ &lt; ♦ &lt; ♥.</span></div>
+              <div><b>Đánh trước</b><span>Ván đầu: người giữ 3♠ phải mở lượt và tổ hợp đầu tiên phải chứa 3♠. Ván sau: người thắng ván trước mở.</span></div>
+              <div><b>Tổ hợp</b><span>Lẻ, đôi, sám, sảnh 3+ lá, tứ quý, 3+ đôi thông. Người sau thường phải đánh cùng loại và mạnh hơn.</span></div>
+              <div><b>Chặt 2</b><span>3 đôi thông chặt 1 con 2; tứ quý chặt 1 con 2; 4 đôi thông chặt đôi 2 và tứ quý. Đây là quy ước phổ biến; luật nhà có thể khác.</span></div>
+              <div><b>Bỏ lượt</b><span>Bỏ lượt thì chờ đến khi vòng hiện tại kết thúc. Khi 3 người còn lại bỏ, người đánh cuối được mở bộ mới.</span></div>
+              <div><b>Thắng</b><span>Ai hết bài trước thắng ván. Từ ván sau, người thắng được quyền đi trước. “Thối 2” được báo nếu người chơi còn 2 khi ván kết thúc.</span></div>
+            </div>
+            <div class="tl-rule-note">Lưu ý: Tiến Lên Miền Nam có một số luật nhà khác nhau (thắng trắng, cách chặt đôi 2, tính phạt…). Bản demo này giữ bộ luật lõi phổ biến để chơi 4 người ổn định.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="blackjack" class="page">
+        <div class="page-head"><div><small class="eyebrow">CARD TABLE</small><h1>🃏 Xì Dách</h1><p>Luật demo đơn giản: cố gắng đạt gần 21 hơn nhà cái. Chỉ sử dụng coin ảo.</p></div><span class="demo-badge">VIRTUAL ONLY</span></div>
+        <div class="blackjack-shell">
+          <div class="bj-table" id="bjTable">
+            <div class="bj-table-glow"></div>
+            <div class="bj-topline"><span>BETZONE BLACKJACK</span><span id="bjPhase">SẴN SÀNG</span></div>
+            <div class="bj-hand-wrap">
+              <div class="hand-title">NHÀ CÁI <small id="bjDealerScore">?</small></div>
+              <div class="card-row" id="dealerHand"></div>
+            </div>
+            <div class="bj-center"><span>21</span><small>BLACKJACK</small></div>
+            <div class="bj-hand-wrap">
+              <div class="hand-title">BẠN <small id="bjPlayerScore">0</small></div>
+              <div class="card-row" id="playerHand"></div>
+            </div>
+            <div class="bj-message" id="bjMessage">Nhập coin rồi bấm “Chia bài”.</div>
+          </div>
+          <div class="bj-control-panel">
+            <div class="bj-balance"><span>Cược hiện tại</span><b id="bjWager">0 🪙</b></div>
+            <input id="bjAmount" class="coin-input" type="number" min="1" step="1" placeholder="Coin">
+            <div class="bj-actions">
+              <button class="green-btn" id="bjDeal">🃏 CHIA BÀI</button>
+              <button class="outline-btn" id="bjHit" disabled>RÚT THÊM</button>
+              <button class="outline-btn" id="bjStand" disabled>DỪNG</button>
+            </div>
+            <div class="bj-help"><span>♥ ♦ = đỏ</span><span>♠ ♣ = đen</span><span>21 = thắng ngay</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pachinko" class="page">
+        <div class="page-head">
+          <div><small class="eyebrow">NEON ARCADE</small><h1>🎰 BETZONE Pachinko</h1><p>Máy slot 3 reel bằng coin ảo. Combo càng hiếm, hệ số càng lớn. Không có tiền thật.</p></div>
+          <span class="demo-badge">VIRTUAL ONLY</span>
+        </div>
+        <div class="pachinko-wrap">
+          <div class="jackpot-strip"><span>★ JACKPOT MONITOR</span><strong>7️⃣ 7️⃣ 7️⃣ = ×20</strong><span id="slotWinText">READY</span></div>
+          <div class="slot-cabinet" id="slotMachine">
+            <div class="slot-crown"><span>BET</span><b>ZONE</b><small>LUCKY PACHINKO</small></div>
+            <div class="slot-display">
+              <div class="slot-light-row"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="slot-reels"><div class="slot-reel"><div id="slot1">🍒</div></div><div class="slot-reel"><div id="slot2">7️⃣</div></div><div class="slot-reel"><div id="slot3">💎</div></div></div>
+              <div id="slotResult" class="slot-result">KÉO CẦN GẠT — QUAY MÁY</div>
+              <div class="slot-subtext">🍒×5 • 🍋×6 • 🔔×8 • ⭐×10 • 💎×14 • 7️⃣×20 • BZ×25 • 2 giống = ×2</div>
+            </div>
+            <div class="slot-controls">
+              <div class="slot-balance"><span>COIN CỦA BẠN</span><b id="slotBalanceText">0 🪙</b></div>
+              <input id="slotAmount" class="coin-input slot-input" type="number" min="1" step="1" placeholder="Coin muốn quay">
+              <div class="slot-control-row"><button class="slot-lever" id="slotSpin" title="Quay máy">↻<small>SPIN</small></button><div class="slot-button-board"><button onclick="document.getElementById('slotAmount').value=1000">1K</button><button onclick="document.getElementById('slotAmount').value=5000">5K</button><button onclick="document.getElementById('slotAmount').value=10000">10K</button></div></div>
+            </div>
+          </div>
+          <div class="slot-info-grid"><div><b>🎰 3 giống nhau</b><span>Ăn theo hệ số từng biểu tượng.</span></div><div><b>✨ 2 giống nhau</b><span>Nhận lại ×2 trong demo.</span></div><div><b>🔊 Hiệu ứng</b><span>Dùng nút âm thanh ở sidebar để bật/tắt.</span></div></div>
+        </div>
+      </section>
+
+      <section id="titlesPage" class="page">
+        <div class="page-head">
+          <div><small class="eyebrow">PLAYER PROGRESSION</small><h1>🏆 Sảnh Danh Hiệu</h1><p>Đây là nơi lưu toàn bộ title đã đạt. Danh hiệu mở khóa theo level, số dư và chuỗi trận.</p></div>
+          <div class="title-hall-actions"><span id="titleProgressText" class="demo-badge">0/11 danh hiệu đã đạt</span><button class="green-btn" onclick="openProfileModal()">✎ Chỉnh trong hồ sơ</button></div>
+        </div>
+        <div class="title-hero"><div><span class="title-crown-big">👑</span><div><small>DANH HIỆU ĐANG DÙNG</small><strong id="titleActiveName">🌱 Người mới</strong></div></div><div class="title-stats"><div><b id="progressWins">0</b><small>THẮNG</small></div><div><b id="progressLosses">0</b><small>THUA</small></div><div><b id="progressStreak">0 / 0</b><small>STREAK / BEST</small></div></div></div>
+        <div id="titleGrid" class="title-grid"></div>
+      </section>
+
+      <section id="shop" class="page">
+        <div class="page-head">
+          <div><small class="eyebrow">VIRTUAL STORE</small><h1>🛍 Cửa hàng &amp; Skin</h1><p>Dùng coin ảo để mua vật phẩm hỗ trợ và skin khoe trong giao diện. Vật phẩm chỉ tác động trong demo local.</p></div>
+          <div class="header-actions"><span class="demo-badge">COIN ẢO ONLY</span><button class="outline-btn" id="shopRefresh">↻ Cập nhật</button></div>
+        </div>
+        <div class="shop-hero">
+          <div><small>SHOP STATUS</small><b>Mở cửa 24/7</b><span id="dailyItemLimitText">Mua tối đa 3 lần / món / ngày</span></div>
+          <div class="shop-balance"><small>Số dư</small><strong id="shopBalance">10,000 🪙</strong></div>
+        </div>
+        <div class="store-section-head"><div><small class="eyebrow">POWER ITEMS</small><h2>Vật phẩm</h2></div><span>Click mua • sau đó mở túi đồ</span></div>
+        <div id="itemShopGrid" class="store-grid"></div>
+        <div class="store-section-head skin-head"><div><small class="eyebrow">SHOWCASE</small><h2>Skin nhân vật</h2></div><span>Trang trí trợ lý &amp; thỏa sức khoe khoang</span></div>
+        <div id="skinShopGrid" class="skin-grid"></div>
+      </section>
+
+      <section id="history" class="page">
+        <div class="page-head"><div><small class="eyebrow">ACTIVITY</small><h1>◷ Lịch sử</h1><p>Các hoạt động được lưu cục bộ trong trình duyệt.</p></div><button class="clear-btn" id="clearHistory">Xóa lịch sử</button></div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+    </main>
+
+    <footer>BETZONE VIRTUAL ARENA • Coin ảo local • Dữ liệu bóng đá để tham khảo/demo • Không có tiền thật • Vật phẩm/skin chỉ là nội dung demo</footer>
+  </div>
+</div>
+<button class="inventory-fab" id="inventoryFab" title="Mở túi đồ">🎒<span id="inventoryBadge">0</span></button>
+<aside class="cute-assistant" id="cuteAssistant" aria-label="Trợ lý BETZONE">
+  <div class="assistant-bubble" id="assistantBubble">Hí bro~ Mình là trợ lý BETZONE ✨<br><small>Kéo nhân vật bằng chuột để đặt tự do! 🔊 Giọng sẽ dùng voice vi-VN có sẵn trên máy.</small></div>
+  <div class="assistant-name-pill"><span id="assistantSkinDot">●</span><b id="assistantSkinName">REM</b><small>TRỢ LÝ</small></div>
+  <button class="assistant-character" id="assistantCharacter" title="Kéo để di chuyển">
+    <span class="assistant-image-frame"><img id="assistantImage" class="assistant-image" alt="Trợ lý Rem nửa thân" src="https://toppng.com/uploads/preview/rem-sticker-re-zero-subaru-ku-11562903928gvb5hc5h58.png"></span>
+  </button>
+  <div class="assistant-actions">
+    <button id="assistantTalk" title="Cho trợ lý nói">💬</button>
+    <button id="assistantVoice" title="Giọng Việt">🇻🇳</button>
+  </div>
+</aside>
+<div id="toastStack" class="toast-stack"></div>
+
+<div class="modal-backdrop hidden" id="profileModal">
+  <div class="utility-modal profile-modal">
+    <button class="modal-close" data-close="profileModal">×</button>
+    <div class="utility-head">
+      <div><small class="eyebrow">PLAYER PROFILE</small><h2>👤 Thông tin cá nhân</h2><p>Thông tin chỉ được lưu cục bộ trong trình duyệt của bạn.</p></div>
+      <span class="inventory-count">LOCAL</span>
+    </div>
+    <div class="profile-form">
+      <div class="profile-preview"><div class="avatar profile-preview-avatar" id="profilePreviewAvatar">U</div><div><b id="profilePreviewName">Player 01</b><small>BETZONE PLAYER</small></div></div>
+      <label>Tên hiển thị<input id="profileUsername" maxlength="24" type="text" placeholder="Tên của bạn"></label>
+      <label>Email<input id="profileEmailInput" maxlength="80" type="email" placeholder="you@example.com"></label>
+      <label>Chữ avatar<input id="profileAvatarInput" maxlength="2" type="text" placeholder="U"></label>
+      <label>Danh hiệu đang dùng<select id="profileTitleSelect"></select></label>
+      <label>Code quản trị<input id="adminCodeInput" maxlength="24" type="password" autocomplete="off" placeholder="Nhập code nếu bạn có"></label>
+      <div class="admin-code-note">Code <b>admin</b> → đặt tài khoản lên <b>Level 99</b>. Không lưu code vào localStorage.</div>
+      <div class="withdraw-actions"><button class="outline-btn" data-close="profileModal">Hủy</button><button class="green-btn" id="saveProfile">Lưu thông tin</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop hidden" id="inventoryModal">
+  <div class="utility-modal inventory-modal">
+    <button class="modal-close" data-close="inventoryModal">×</button>
+    <div class="utility-head"><div><small class="eyebrow">PLAYER BAG</small><h2>🎒 Túi đồ</h2><p>Chọn vật phẩm để kích hoạt. Một số món sẽ dùng cho <b>lượt game kế tiếp</b>.</p></div><span class="inventory-count" id="inventoryCount">0 món</span></div>
+    <div id="inventoryGrid" class="inventory-grid"></div>
+    <div class="inventory-tip">💡 <b>Máy chữa lỗ</b> hoàn coin cho lần thua kế tiếp. <b>BIA</b> bảo đảm thắng lượt tiếp theo trong demo.</div>
+  </div>
+</div>
+
+<div class="modal-backdrop hidden" id="withdrawModal">
+  <div class="utility-modal withdraw-modal">
+    <button class="modal-close" data-close="withdrawModal">×</button>
+    <div class="utility-head"><div><small class="eyebrow">VIRTUAL CASHOUT</small><h2>⇩ Rút coin ảo</h2><p>Demo only — giới hạn tối đa <b>80,000 coin / 2 phút</b>.</p></div><span class="withdraw-timer" id="withdrawTimer">Sẵn sàng</span></div>
+    <div class="withdraw-limit"><div><span>Đã rút trong cửa sổ 2 phút</span><b id="withdrawUsed">0 / 80,000</b></div><div class="limit-bar"><i id="withdrawBar"></i></div></div>
+    <input id="withdrawAmount" class="coin-input" type="number" min="1" max="80000" step="1" placeholder="Nhập số coin muốn rút">
+    <div class="withdraw-actions"><button class="outline-btn" data-close="withdrawModal">Đóng</button><button class="green-btn" id="confirmWithdraw">Rút coin ảo</button></div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

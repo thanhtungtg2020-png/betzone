@@ -1,0 +1,17 @@
+BETZONE V5 LOCAL ASSETS
+========================
+
+Đặt ảnh nhân vật cùng thư mục với index.html / script.js:
+
+rem.png
+furina.png
+hoshino.png
+fern.png
+bibi.png
+mira.png
+mup.jpg
+
+Mira Neon là trợ lý mới trong shop. Bạn có thể thay mira.png bằng ảnh của bạn.
+Nếu một ảnh không tồn tại, BETZONE sẽ tự chuyển sang SVG fallback để app vẫn mở offline.
+
+Toàn bộ game chỉ dùng coin ảo/localStorage.
