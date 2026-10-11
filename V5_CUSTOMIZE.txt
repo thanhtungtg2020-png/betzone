@@ -1,0 +1,142 @@
+BETZONE V5 — CUSTOMIZE GUIDE
+============================
+
+1) LOGO
+-------
+File: logo.svg
+
+Chỉ cần thay logo.svg bằng SVG/PNG của bạn.
+Trong index.html, marker nằm ngay trước logo:
+<!-- [CUSTOM LOGO] Thay file logo.svg bên thư mục này để đổi logo BETZONE. -->
+
+2) SKIN ĐỘC QUYỀN LEVEL 80  ⭐ PHẦN NỔI BẬT
+---------------------------------------------
+Tìm trong script.js:
+const V5_EXCLUSIVE_SKIN_KEY = "betzone_80";
+
+Skin Level 80 được khai báo trong SKIN_DEFS với marker:
+betzone_80: {name:"BETZONE Sovereign", ... requiredLevel:80 ...}
+
+Muốn tự thay skin:
+- đổi name
+- đổi icon
+- đổi desc
+- tạo SVG mới rồi gán vào BETZONE80_FALLBACK_SVG_DATA
+
+Khi tài khoản đạt Level 80, skin này tự mở khóa và tự thêm vào bộ sưu tập.
+
+3) HOSHINO / FERN
+------------------
+Trong script.js, tìm HOSHINO_FALLBACK_SVG_DATA và FERN_FALLBACK_SVG_DATA.
+Đây là ảnh fallback local fan-style nên không phụ thuộc mạng.
+Bạn có thể thay hai data SVG này bằng hình của riêng mình.
+
+4) VOICE TRỢ LÝ 🎙️
+-------------------
+Tìm:
+function chooseVietnameseVoice()
+
+Code sẽ ưu tiên voice vi-VN và các voice Microsoft/Google tiếng Việt nếu Chrome/Windows có cài.
+Tìm tiếp:
+function speakAssistant(text)
+
+Bạn có thể chỉnh:
+rate = tốc độ nói
+pitch = cao độ giọng
+volume = âm lượng
+
+5) TITLE
+--------
+Tìm:
+const TITLE_DEFS = {
+
+Mỗi title có:
+name  = tên title
+ tier  = basic / normal / legend / special
+ desc  = điều kiện hiển thị
+ unlock = điều kiện mở khóa
+
+Muốn thêm title mới: thêm một entry vào TITLE_DEFS.
+Sảnh Danh Hiệu sẽ tự render title mới.
+
+6) XP / LEVEL
+-------------
+Tìm:
+function levelNeed(level)
+
+Đây là công thức XP. Level tối đa nằm ở:
+const MAX_LEVEL = 99;
+
+Phần thưởng level nằm ở:
+function applyLevelRewards(oldLevel, newLevel)
+
+Các mốc nổi bật:
+Level 10 -> 20,000 coin
+Level 20 -> 30,000 coin
+Level 40 -> 4 lượt mua / món / ngày
+Level 80 -> skin độc quyền
+Level 99 -> God of Casino
+
+7) GIỚI HẠN MUA VẬT PHẨM
+------------------------
+Tìm:
+const DAILY_ITEM_LIMIT_BASE = 3;
+const DAILY_ITEM_LIMIT_LV40 = 4;
+
+Đổi số ở đây là đủ.
+
+8) SLOT MACHINE
+---------------
+Tìm:
+const SLOT_SYMBOLS
+const SLOT_WEIGHTS
+function slotPayout(a,b,c)
+
+Bạn có thể đổi biểu tượng, độ hiếm và hệ số thắng tại đây.
+
+Lưu ý: đây là game demo coin ảo/localStorage.
+
+
+9) CODE QUẢN TRỊ
+----------------
+Mở 👤 Thông tin cá nhân → ô "Code quản trị".
+Nhập:
+admin
+→ Level 99
+→ XP = MAX LEVEL
+→ mở skin Level 80
+→ trang bị title God of Casino.
+
+Code không được lưu vào localStorage.
+
+10) TRỢ LÝ THÊM TRONG SHOP
+---------------------------
+Shop V5 đã có thêm:
+mira: {name:"Mira Neon", price:32000, image:"mira.png"}
+
+Ảnh được đọc từ máy/local folder của BETZONE.
+Hãy đặt file:
+- rem.png
+- furina.png
+- hoshino.png
+- fern.png
+- bibi.png
+- mira.png
+- mup.jpg
+
+Nếu thiếu ảnh, app tự dùng ảnh SVG fallback để giao diện vẫn chạy offline.
+
+11) TIẾN LÊN MIỀN NAM — 4 NGƯỜI
+--------------------------------
+Menu mới: "♠ Tiến Lên 4 người".
+- 4 người: BẠN + 3 máy
+- 52 lá, 13 lá/người
+- Ván đầu: người có 3♠ đi trước
+- Ván sau: người thắng ván trước đi trước
+- Hỗ trợ lẻ, đôi, sám, sảnh 3+, tứ quý, 3+ đôi thông
+- Có bỏ lượt và tự mở vòng mới sau khi 3 người bỏ
+- Có chặt 2 theo quy ước phổ biến
+- Bản demo chỉ dùng coin ảo.
+
+LƯU Ý:
+Tiến Lên Miền Nam có biến thể luật theo từng nhóm/bàn, đặc biệt ở thắng trắng, phạt thối và cách chặt một số bộ. Bản V5 giữ bộ luật lõi để 4 người chơi ổn định.
